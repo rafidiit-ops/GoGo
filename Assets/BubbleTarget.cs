@@ -28,7 +28,7 @@ public class BubbleTarget : MonoBehaviour
         // If we're waiting for an object to be released, check if it's released now
         if (waitingForRelease && currentObject != null)
         {
-            TraditionalGoGoInteraction gogoController = FindObjectOfType<TraditionalGoGoInteraction>();
+            TraditionalGoGoInteraction gogoController = FindFirstObjectByType<TraditionalGoGoInteraction>();
             
             // Check if object is no longer being held
             if (gogoController == null || gogoController.GetCurrentObject() != currentObject)
@@ -58,7 +58,7 @@ public class BubbleTarget : MonoBehaviour
         if (other.gameObject.name.Contains("Phantom"))
         {
             // Check if object is currently being held by TraditionalGoGo
-            TraditionalGoGoInteraction gogoController = FindObjectOfType<TraditionalGoGoInteraction>();
+            TraditionalGoGoInteraction gogoController = FindFirstObjectByType<TraditionalGoGoInteraction>();
             if (gogoController != null && gogoController.GetCurrentObject() == other.gameObject)
             {
                 // Object is being held - don't process yet, wait for release

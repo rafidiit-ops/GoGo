@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+// Version: 1.0 - Traditional GoGo Implementation
+
 /// <summary>
 /// Traditional GoGo Interaction Technique (Poupyrev et al., 1996)
 /// 
@@ -83,6 +85,12 @@ public class TraditionalGoGoInteraction : MonoBehaviour
                 Debug.Log("✅ Added collision detector to virtual hand");
             }
             detector.gogoController = this;
+        }
+
+        // Hide physical controller hand model to prevent occlusion
+        if (controllerTransform != null)
+        {
+            HideControllerVisuals(controllerTransform);
         }
 
         // Enable input action
@@ -288,6 +296,33 @@ public class TraditionalGoGoInteraction : MonoBehaviour
         }
 
         isGrabbing = false;
+    }
+
+    /// <summary>
+    /// Hide all visual renderers on the physical controller to prevent occlusion of virtual hand
+    /// </summary>
+    private void HideControllerVisuals(Transform controller)
+    {
+        // Find all renderers on controller and its children
+        Renderer[] renderers = controller.GetComponentsInChildren<Renderer>();
+        int hiddenCount = 0;
+        
+        foreach (Renderer renderer in renderers)
+        {
+            // Don't hide the virtual hand itself!
+            if (virtualHand != null && renderer.transform.IsChildOf(virtualHand))
+            {
+                continue;
+            }
+            
+            renderer.enabled = false;
+            hiddenCount++;
+        }
+        
+        if (hiddenCount > 0)
+        {
+            Debug.Log($"👻 Hidden {hiddenCount} controller visual renderer(s) to show virtual hand clearly");
+        }
     }
 
     /// <summary>

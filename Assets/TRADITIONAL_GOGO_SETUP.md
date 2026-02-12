@@ -65,6 +65,7 @@ Traditional GoGo (Poupyrev et al., 1996) allows you to reach distant objects by 
   - **CRITICAL**: The script will automatically:
     - Add a SphereCollider (trigger) to the virtual hand
     - Add VirtualHandCollisionDetector component to the virtual hand
+    - **Hide the physical controller hand model** to prevent visual occlusion
   - This is what physically "touches" objects
 - **Controller Transform**: Drag your Right Hand Controller transform from XR Rig hierarchy:
   - Look in Hierarchy: `XR Origin` → `Camera Offset` → `RightHand Controller` (or `Right Controller`)
@@ -107,6 +108,7 @@ Before testing in VR, check these in Unity Editor:
 - [ ] Console shows on Play: "✅ Traditional GoGo Interaction initialized"
 - [ ] Console shows: "✅ Added trigger collider to virtual hand"
 - [ ] Console shows: "✅ Added collision detector to virtual hand"
+- [ ] Console shows: "👻 Hidden X controller visual renderer(s)"
 
 #### 7. Test in VR
 - Put on headset
@@ -123,7 +125,8 @@ Before testing in VR, check these in Unity Editor:
 ✅ Traditional GoGo Interaction initialized
 ✅ Added trigger collider to virtual hand
 ✅ Added collision detector to virtual hand
-👆 Virtual hand touching: RedPhantom
+� Hidden X controller visual renderer(s) to show virtual hand clearly
+�👆 Virtual hand touching: RedPhantom
 ✅ [GoGo] Grabbed: RedPhantom at virtual distance: 1.50m
 🤚 GoGo Manipulation | Real hand: 0.45m | Virtual reach: 1.52m | Amplification: 3.4x | 10cm real = 0.34m virtual
 ```
